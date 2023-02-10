@@ -1,4 +1,4 @@
-
+from config import WELCOME_IMAGE
 
 import re
 import time
@@ -9,6 +9,9 @@ from pyrogram.types import Message
 from Spoiled import app, botid, botname, botusername
 from Spoiled.database import add_served_chat, is_afk, remove_afk
 from Spoiled.helpers import get_readable_time, put_cleanmode
+
+if not WELCOME_IMAGE:
+    WELCOME_IMAGE = "https://te.legra.ph/file/775f2c8c997a4cfb504c5.jpg"
 
 chat_watcher_group = 1
 
