@@ -1,5 +1,5 @@
 
-from config import START_IMAGE
+from config import START_IMAGE, SETTINGS_IMAGE
 import time
 import random
 
@@ -14,6 +14,9 @@ from Spoiled.helpers import get_readable_time, put_cleanmode, settings_markup, R
 
 if not START_IMAGE:
     START_IMAGE = "https://te.legra.ph/file/775f2c8c997a4cfb504c5.jpg"
+
+if not SETTINGS_IMAGE:
+    SETTINGS_IMAGE = START_IMAGE
 
 @app.on_message(filters.command(["start", "settings"]) & filters.group & ~filters.edited)
 async def on_start(_, message: Message):
@@ -34,7 +37,7 @@ async def on_start(_, message: Message):
         ]
     )
     image = random.choice(RANDOM)
-    send = await message.reply_photo(START_IMAGE, caption=f"Hello! My name is {botname}.\n\nTo know more about me check help section. Active since {Uptime}", reply_markup=upl)
+    send = await message.reply_photo(SETTINGS_IMAGE, caption=f"Hello! My name is {botname}.\n\nTo know more about me check help section. Active since {Uptime}", reply_markup=upl)
     await put_cleanmode(message.chat.id, send.message_id)
     
 
@@ -73,7 +76,7 @@ async def on_private_start(_, message: Message):
             ]
         )
         image = random.choice(RANDOM)
-        await message.reply_photo(image, caption=f"Hello! My name is {botname}.\n\nTo know more about me check help section by /help. Active since {Uptime}", reply_markup=upl)
+        await message.reply_photo(START_IMAGE, caption=f"Hello! My name is {botname}.\n\nTo know more about me check help section by /help. Active since {Uptime}", reply_markup=upl)
 
 @app.on_message(filters.command(["help"]) & filters.private & ~filters.edited)
 async def on_private_help(_, message: Message):
