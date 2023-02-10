@@ -250,8 +250,8 @@ async def welcome(_, message: Message):
     for member in message.new_chat_members:
         try:
             if member.id == botid:
-                send =  await message.reply_text(
-                    f"Thanks for having me in {message.chat.title}\n\n{botname} is alive."
+                send =  await message.reply_photo(WELCOME_IMAGE,
+                    caption=f"Thanks for having me in {message.chat.title}\n\n{botname} is alive."
                 )
                 await put_cleanmode(message.chat.id, send.message_id)
         except:
