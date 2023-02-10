@@ -1,5 +1,5 @@
 
-
+from config import START_IMAGE
 import time
 import random
 
@@ -12,6 +12,8 @@ from Spoiled import app, boot, botname, botusername
 from Spoiled.database.cleanmode import cleanmode_off, cleanmode_on, is_cleanmode_on
 from Spoiled.helpers import get_readable_time, put_cleanmode, settings_markup, RANDOM, HELP_TEXT
 
+if not START_IMAGE:
+    START_IMAGE = "https://te.legra.ph/file/775f2c8c997a4cfb504c5.jpg"
 
 @app.on_message(filters.command(["start", "settings"]) & filters.group & ~filters.edited)
 async def on_start(_, message: Message):
